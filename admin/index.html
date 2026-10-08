@@ -65,6 +65,18 @@ li .act{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px}
 #gd summary{cursor:pointer;color:var(--soft);font-size:.9rem}
 .ed{grid-column:1/-1;display:grid;gap:8px;border-top:1px dashed var(--line);padding-top:10px;margin-top:4px}.ed select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit}
 #kf label{display:grid;gap:6px}
+.tpre{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.tp{display:grid;gap:6px;padding:10px;border:1px solid var(--line);border-radius:14px;background:var(--bg);cursor:pointer;text-align:left;font:500 .82rem var(--body);color:var(--ink)}
+.tp.on{border-color:var(--navy);box-shadow:0 0 0 2px var(--navy)}
+.tp .sw{display:flex;height:22px;border-radius:8px;overflow:hidden;border:1px solid rgba(0,0,0,.08)}.tp .sw i{flex:1}
+.tcol{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.tcol label{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--soft);border:1px solid var(--line);border-radius:12px;padding:6px 10px;background:var(--bg)}
+.tcol input[type=color]{width:34px;height:28px;padding:0;border:0;background:none;flex:none}
+.chk{display:flex!important;align-items:flex-start;gap:8px;font-size:.86rem;color:var(--ink)}.chk input{width:auto;margin-top:3px}
+.tani{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tani select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit}
+.tchk{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+h3.sub{font:600 .95rem var(--body);margin:6px 0 0}
+@media (max-width:520px){.tani,.tchk{grid-template-columns:1fr}}
 .by{text-align:center;font-size:.78rem;letter-spacing:.06em;margin-top:8px}.by b{color:var(--navy)}
 @media (max-width:520px){li{grid-template-columns:1fr}}
 </style>
@@ -128,6 +140,28 @@ li .act{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px}
   </section>
 
   <section class="panel srvonly" hidden>
+    <h2>Tema &amp; animasi</h2>
+    <p>Pilih tema siap pakai atau atur warna sendiri, lalu atur animasinya. Berlaku langsung untuk <b>semua</b> kartu undangan dan halaman daftar, tanpa upload ulang.</p>
+    <div class="tpre" id="tpre"></div>
+    <div class="tcol" id="tcol"></div>
+    <label class="chk"><input type="checkbox" id="tgelap"> Ikuti mode gelap HP tamu (kalau HP tamu memakai mode gelap, tampil versi gelap bawaan)</label>
+    <h3 class="sub">Animasi</h3>
+    <div class="tani">
+      <label>Tingkat animasi<select id="alevel"><option value="penuh">Penuh</option><option value="ringan">Ringan (tanpa kelopak &amp; bintang)</option><option value="mati">Mati (tanpa animasi)</option></select></label>
+      <label>Efek saat "Buka Undangan"<select id="abuka"><option value="geser">Geser ke atas</option><option value="pudar">Memudar</option><option value="zoom">Zoom</option></select></label>
+    </div>
+    <div class="tchk">
+      <label class="chk"><input type="checkbox" id="akelopak" checked> Kelopak &amp; ikon melayang</label>
+      <label class="chk"><input type="checkbox" id="akilau" checked> Kilau pada foto grup</label>
+      <label class="chk"><input type="checkbox" id="abintang" checked> Bintang berkelip</label>
+      <label class="chk"><input type="checkbox" id="adaun" checked> Daun bergoyang</label>
+      <label class="chk"><input type="checkbox" id="amuncul" checked> Efek muncul saat digulir</label>
+    </div>
+    <div class="row"><button class="b pri" id="tsave" type="button">Simpan tema</button><button class="b" id="tprev" type="button">Pratinjau kartu</button><button class="b del" id="treset" type="button">Kembalikan tema awal</button></div>
+    <p class="msg" id="tm" role="status"></p>
+  </section>
+
+  <section class="panel srvonly" hidden>
     <h2>Isi undangan</h2>
     <p>Ubah tanggal, waktu, lokasi, rundown, tata tertib, dan kata-kata di undangan. Berlaku langsung untuk <b>semua</b> kartu (undangan jadi maupun tambahan), tanpa upload ulang.</p>
     <form id="kf" novalidate style="display:grid;gap:10px">
@@ -160,7 +194,7 @@ li .act{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px}
     <ul id="ul2"></ul>
   </section>
 </div>
-<p class="by">Versi 5 &middot; Product by <b>gunturs1farm</b></p>
+<p class="by">Versi 6 · Cloudflare &middot; Product by <b>gunturs1farm</b></p>
 </main>
 
 <script>
@@ -229,7 +263,7 @@ function gb(){var ul=$('gb'),dl=$('gdl');if(!ul)return;ul.innerHTML='';dl.innerH
   $('gdt').textContent='Undangan yang dihapus ('+dl.children.length+')';$('dropnote').hidden=MODE==='server';pending()}
 $('gq').oninput=gb;
 $('dl').onclick=function(){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(HAPUS,null,1)],{type:'application/json'}));a.download='hapus.json';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500)};
-var POLL=null;function startPoll(){if(POLL||MODE!=='server')return;POLL=setInterval(function(){if(document.hidden||!KEY)return;api({action:'list'}).then(function(r){var n=JSON.stringify(r.list||[]);if(n!==JSON.stringify(LIST)){LIST=r.list||[];render()}}).catch(function(){});loadH()},20000)}
+var POLL=null;function startPoll(){if(POLL||MODE!=='server')return;POLL=setInterval(function(){if(document.hidden||!KEY)return;api({action:'list'}).then(function(r){var n=JSON.stringify(r.list||[]);if(n!==JSON.stringify(LIST)){LIST=r.list||[];render()}}).catch(function(){});loadH()},8000)}
 var UC=[];
 function uc(){if(MODE!=='server')return;api2('/api/ucapan',{action:'daftar'}).then(function(d){UC=d.list||[];var r=d.ringkasan||{};$('rh').textContent=r.hadir||0;$('ro').textContent=r.orang||0;$('rt').textContent=r.tidak||0;$('rr').textContent=r.ragu||0;ucl()}).catch(function(e){msg('um',e.message,'err')})}
 function api2(u,body){return fetch(ROOT+u.replace(/^\//,''),{method:'POST',headers:{'content-type':'application/json','x-admin-key':KEY},body:JSON.stringify(body)}).then(function(r){return r.json().catch(function(){return {}}).then(function(d){if(!r.ok)throw new Error(d.error||('Gagal ('+r.status+')'));return d})})}
@@ -242,7 +276,7 @@ function ucl(){var ul=$('ul2');ul.innerHTML='';if(!UC.length){var e=el('li','emp
     var d=el('button','b del','Hapus');d.type='button';d.onclick=function(){if(!d.classList.contains('sure')){d.classList.add('sure');d.textContent='Yakin hapus?';setTimeout(function(){d.classList.remove('sure');d.textContent='Hapus'},4000);return}
       d.disabled=true;api2('/api/ucapan',{action:'hapus',id:x.id}).then(function(r){UC=r.list||[];uc();msg('um','Ucapan dari '+x.nama+' dihapus.','good')}).catch(function(e){d.disabled=false;msg('um',e.message,'err')})};
     ac.appendChild(d);li.appendChild(ac);ul.appendChild(li)})}
-function yt(){fetch(ROOT+'api/pengaturan',{cache:'no-store'}).then(function(r){return r.json()}).then(function(p){NMO=p.nama||{};ACA=p.acara||{};isiForm();gb();$('yu').value=p.youtube||'';$('yc').value=p.catatan||'';$('yo').hidden=!p.youtube;$('yo').href=p.youtube||'#'}).catch(function(){})}
+function yt(){fetch(ROOT+'api/pengaturan',{cache:'no-store'}).then(function(r){return r.json()}).then(function(p){NMO=p.nama||{};ACA=p.acara||{};isiForm();gb();TEMA=p.tema||null;tfill(TEMA);$('yu').value=p.youtube||'';$('yc').value=p.catatan||'';$('yo').hidden=!p.youtube;$('yo').href=p.youtube||'#'}).catch(function(){})}
 function saveYt(u,c){msg('ym','Menyimpan…');api2('/api/pengaturan',{youtube:u,catatan:c}).then(function(p){$('yu').value=p.youtube;$('yc').value=p.catatan;$('yo').hidden=!p.youtube;$('yo').href=p.youtube||'#';msg('ym',p.youtube?'Link tersimpan. Semua kartu undangan langsung memakai link ini.':'Link dikosongkan.','good')}).catch(function(e){msg('ym',e.message,'err')})}
 var ACA={},DEFV={},AF=[['event','Nama acara','text',80],['unit','Program studi','text',120],['inst','Institusi / penyelenggara','text',120],['date','Tanggal & jam mulai (untuk hitung mundur)','datetime-local',16],['time','Waktu (teks)','text',60],['loc','Lokasi','text',160],['maps','Link Google Maps','url',300],['open1','Kata pembuka 1','area',1200],['open2','Kata pembuka 2','area',800],['rundown','Rundown (satu acara per baris)','area',3000],['tata','Tata tertib (satu poin per baris)','area',3000],['barnote','Keterangan barcode','area',300],['close','Kalimat penutup','area',800],['sign','Penandatangan (Hormat kami)','area',200],['wa','Nomor WhatsApp konfirmasi (awali 62, opsional)','text',20]];
 function buildForm(){var box=$('kf');if(!box||box.dataset.ok)return;box.dataset.ok=1;AF.forEach(function(a){var lb=el('label',null,a[1]),i;if(a[2]==='area'){i=el('textarea');i.rows=a[0]==='rundown'||a[0]==='tata'?8:3}else{i=el('input');i.type=a[2]}i.id='k_'+a[0];i.maxLength=a[3];lb.appendChild(i);box.insertBefore(lb,$('krow'))})}
@@ -252,6 +286,27 @@ $('kf').onsubmit=function(ev){ev.preventDefault();var a={};AF.forEach(function(x
   api2('/api/pengaturan',{action:'acara',acara:a}).then(function(p){ACA=p.acara||{};isiForm();msg('km','Tersimpan. Semua kartu undangan langsung memakai isi baru.','good')}).catch(function(e){msg('km',e.message,'err')})};
 $('kr').onclick=function(){if(!this.classList.contains('sure')){var b=this;b.classList.add('sure');b.textContent='Yakin kembalikan?';setTimeout(function(){b.classList.remove('sure');b.textContent='Kembalikan ke isi awal'},4000);return}
   api2('/api/pengaturan',{action:'acara',acara:{}}).then(function(p){ACA={};isiForm();msg('km','Isi undangan dikembalikan ke versi awal.','good')}).catch(function(e){msg('km',e.message,'err')})};
+var PRESET=[
+ ['Navy & Taupe',{bg:'#EFEAE4',card:'#FAF7F3',ink:'#14233F',soft:'#59627A',teal:'#1B2F55',gold:'#6E5F50',line:'#D8CFC4'}],
+ ['Maroon & Emas',{bg:'#F5EEE6',card:'#FFFAF4',ink:'#3A1418',soft:'#6B5052',teal:'#7A1F2B',gold:'#A8843A',line:'#E3D3C2'}],
+ ['Hijau Sage',{bg:'#EEF1EA',card:'#FAFBF7',ink:'#1F2E25',soft:'#56645A',teal:'#3F6B50',gold:'#9A8456',line:'#D5DDCF'}],
+ ['Ungu Lavender',{bg:'#F1EEF5',card:'#FBFAFD',ink:'#2A2140',soft:'#5F5873',teal:'#5B4B8A',gold:'#A2849B',line:'#DCD5E6'}],
+ ['Biru Langit',{bg:'#EAF1F7',card:'#F8FBFE',ink:'#12293D',soft:'#4F6477',teal:'#1F5E8C',gold:'#8C9DAE',line:'#D2DEE9'}],
+ ['Navy Malam (gelap)',{bg:'#0B1426',card:'#122039',ink:'#EDE7DF',soft:'#A6AEC0',teal:'#C3AF99',gold:'#B9A58F',line:'#26375A'}],
+ ['Hitam Emas (gelap)',{bg:'#111111',card:'#1B1A17',ink:'#F1EBDD',soft:'#B3AA97',teal:'#D4AF37',gold:'#A88B4A',line:'#34302A'}]];
+var TK=[['bg','Latar'],['card','Kartu'],['ink','Teks utama'],['soft','Teks pelengkap'],['teal','Warna utama'],['gold','Aksen'],['line','Garis']],TEMA=null,CUR=PRESET[0][0];
+function tbuild(){var pre=$('tpre');if(pre.dataset.ok)return;pre.dataset.ok=1;PRESET.forEach(function(p){var b=el('button','tp');b.type='button';var sw=el('span','sw');['bg','card','teal','gold','ink'].forEach(function(k){var i=el('i');i.style.background=p[1][k];sw.appendChild(i)});b.appendChild(sw);b.appendChild(el('span',null,p[0]));b.onclick=function(){CUR=p[0];tset(p[1]);tmark()};b.dataset.n=p[0];pre.appendChild(b)});
+  var col=$('tcol');TK.forEach(function(k){var lb=el('label'),i=el('input');i.type='color';i.id='tc_'+k[0];i.oninput=function(){CUR='Kustom';tmark()};lb.appendChild(i);lb.appendChild(document.createTextNode(k[1]));col.appendChild(lb)})}
+function tset(w){TK.forEach(function(k){$('tc_'+k[0]).value=(w[k[0]]||'#000000').toLowerCase()})}
+function tmark(){document.querySelectorAll('.tp').forEach(function(b){b.classList.toggle('on',b.dataset.n===CUR)})}
+function tfill(t){tbuild();var a=(t&&t.anim)||{};CUR=(t&&t.preset)||PRESET[0][0];tset((t&&t.warna)||PRESET[0][1]);tmark();$('tgelap').checked=!!(t&&t.ikutGelap);
+  $('alevel').value=a.level||'penuh';$('abuka').value=a.pembuka||'geser';['kelopak','kilau','bintang','daun','muncul'].forEach(function(k){$('a'+k).checked=a[k]!==false})}
+function tread(){var w={};TK.forEach(function(k){w[k[0]]=$('tc_'+k[0]).value.toUpperCase()});var a={level:$('alevel').value,pembuka:$('abuka').value};['kelopak','kilau','bintang','daun','muncul'].forEach(function(k){a[k]=$('a'+k).checked});return {preset:CUR,warna:w,ikutGelap:$('tgelap').checked,anim:a}}
+$('tsave').onclick=function(){msg('tm','Menyimpan…');api2('/api/pengaturan',{action:'tema',tema:tread()}).then(function(p){TEMA=p.tema;try{localStorage.setItem('temaUndangan2',JSON.stringify(p.tema))}catch(e){}msg('tm','Tema tersimpan. Semua kartu undangan langsung memakai tema ini.','good')}).catch(function(e){msg('tm',e.message,'err')})};
+$('tprev').onclick=function(){try{localStorage.setItem('temaPratinjau',JSON.stringify(tread()))}catch(e){}window.open(ROOT+'undangan/25152001.html?pratinjau=1','_blank')};
+$('treset').onclick=function(){var b=this;if(!b.classList.contains('sure')){b.classList.add('sure');b.textContent='Yakin kembalikan?';setTimeout(function(){b.classList.remove('sure');b.textContent='Kembalikan tema awal'},4000);return}
+  api2('/api/pengaturan',{action:'tema',tema:null}).then(function(){TEMA=null;tfill(null);try{localStorage.removeItem('temaUndangan2')}catch(e){}msg('tm','Tema dikembalikan ke Navy & Taupe bawaan, termasuk mode gelap otomatis.','good')}).catch(function(e){msg('tm',e.message,'err')})};
+tbuild();tfill(null);
 $('yf').onsubmit=function(ev){ev.preventDefault();saveYt($('yu').value.trim(),$('yc').value.trim())};
 $('yx').onclick=function(){$('yu').value='';saveYt('',$('yc').value.trim())};
 $('urf').onclick=uc;
@@ -260,12 +315,12 @@ $('ucsv').onclick=function(){var esc=function(v){v=String(v==null?'':v);return /
   var a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['﻿'+rows.map(function(r){return r.map(esc).join(',')}).join('\n')],{type:'text/csv'}));a.download='ucapan-kehadiran.csv';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500)};
 function enter(){$('login').hidden=true;$('app').hidden=false;
   if(MODE!=='server'){loadLocal();render();loadH();return}
-  document.querySelectorAll('.srvonly').forEach(function(e){e.hidden=false});yt();uc();setInterval(function(){if(!document.hidden&&KEY)uc()},30000);api({action:'list'}).then(function(r){LIST=r.list||[];render();loadH();startPoll()}).catch(function(e){msg('am',e.message,'err')})}
+  document.querySelectorAll('.srvonly').forEach(function(e){e.hidden=false});yt();uc();setInterval(function(){if(!document.hidden&&KEY)uc()},8000);window.addEventListener('focus',function(){if(KEY)uc()});api({action:'list'}).then(function(r){LIST=r.list||[];render();loadH();startPoll()}).catch(function(e){msg('am',e.message,'err')})}
 fetch(ROOT+'index.html',{cache:'no-store'}).then(function(r){return r.text()}).then(function(t){var m=t.match(/<script type="application\/json" id="data">([\s\S]*?)<\/script>/);if(m){var d=JSON.parse(m[1]);BASE_COUNT=d.base.length;BASE_NAMES=d.base.map(function(b){return b[1]});BASE=d.base;stats();gb()}}).catch(function(){});
 function setMode(m){MODE=m;$('modeinfo').hidden=false;
-  if(m==='server'){$('modetext').innerHTML='Mode <b>online tersimpan</b>: undangan tambahan disimpan di server Netlify dan otomatis muncul di halaman daftar. Masuk dengan kata sandi ADMIN_PASSWORD.';$('login').hidden=false;
+  if(m==='server'){$('modetext').innerHTML='Mode <b>online tersimpan</b>: undangan tambahan disimpan di server (Cloudflare) dan otomatis muncul di halaman daftar. Masuk dengan kata sandi ADMIN_PASSWORD.';$('login').hidden=false;
     try{var s=sessionStorage.getItem('adminKey');if(s){KEY=s;api({action:'check'}).then(enter).catch(function(){KEY='';try{sessionStorage.removeItem('adminKey')}catch(e){}})}}catch(e){}}
-  else{$('modetext').innerHTML='Mode <b>tanpa server</b> (Netlify Drop): nama tersimpan di dalam link undangan, jadi link langsung bisa dibagikan tanpa upload ulang. Daftar di bawah hanya tersimpan di browser ini, dan nama baru tidak muncul di halaman daftar umum.';$('lo').hidden=true;enter()}}
+  else{$('modetext').innerHTML='Mode <b>tanpa server</b> (hosting statis): nama tersimpan di dalam link undangan, jadi link langsung bisa dibagikan tanpa upload ulang. Daftar di bawah hanya tersimpan di browser ini, dan nama baru tidak muncul di halaman daftar umum.';$('lo').hidden=true;enter()}}
 fetch(API,{cache:'no-store'}).then(function(r){var ct=r.headers.get('content-type')||'';if(r.ok&&ct.indexOf('json')>=0)return r.json().then(function(d){setMode(Array.isArray(d)?'server':'lokal')});setMode('lokal')}).catch(function(){setMode('lokal')});
 $('lf').onsubmit=function(ev){ev.preventDefault();var v=$('pw').value;if(!v){msg('lm','Isi kata sandi dulu.','err');return}
   $('lb').disabled=true;msg('lm','Memeriksa…');KEY=v;

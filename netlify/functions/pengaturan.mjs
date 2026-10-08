@@ -18,7 +18,7 @@ const teks = (s, n) => String(s == null ? "" : s).replace(/[\u0000-\u0008\u000B-
 
 async function baca(s) {
   const p = (await s.get(KEY, { type: "json" })) || {};
-  return { youtube: p.youtube || "", catatan: p.catatan || "", acara: p.acara || {}, nama: p.nama || {} };
+  return { youtube: p.youtube || "", catatan: p.catatan || "", acara: p.acara || {}, nama: p.nama || {}, tema: p.tema || null };
 }
 
 export default async (req) => {
@@ -46,6 +46,24 @@ export default async (req) => {
     if (a.maps && !/^https:\/\//i.test(a.maps)) return json({ error: "Link Google Maps harus diawali https://" }, 400);
     if (a.wa) a.wa = a.wa.replace(/\D/g, "");
     p.acara = a;
+  } else if (body.action === "tema") {
+    const t = body.tema;
+    if (!t) { p.tema = null; }
+    else {
+      const warna = {};
+      for (const k of ["bg", "card", "ink", "soft", "teal", "gold", "line"]) {
+        const v = String((t.warna || {})[k] || "");
+        if (!/^#[0-9a-fA-F]{6}$/.test(v)) return json({ error: "Warna " + k + " tidak valid." }, 400);
+        warna[k] = v.toUpperCase();
+      }
+      const a = t.anim || {};
+      const anim = {
+        level: ["penuh", "ringan", "mati"].includes(a.level) ? a.level : "penuh",
+        pembuka: ["geser", "pudar", "zoom"].includes(a.pembuka) ? a.pembuka : "geser",
+      };
+      for (const k of ["kelopak", "kilau", "bintang", "daun", "muncul"]) anim[k] = a[k] !== false;
+      p.tema = { preset: teks(t.preset, 40), warna, ikutGelap: !!t.ikutGelap, anim };
+    }
   } else if (body.action === "nama") {
     const id = String(body.id || "");
     if (!/^[A-Za-z0-9._-]{1,600}$/.test(id)) return json({ error: "ID undangan tidak valid." }, 400);

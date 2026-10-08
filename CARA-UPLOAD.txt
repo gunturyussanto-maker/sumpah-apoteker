@@ -98,3 +98,13 @@ FITUR EDIT PER ITEM (VERSI 5, di /admin/)
 - Undangan tambahan: tombol Edit nama (barcode TB- ikut diperbarui).
 - Ucapan & konfirmasi: tombol Edit pada tiap ucapan (nama, kehadiran, jumlah, ucapan) dan Hapus.
 - Cek versi: di bagian bawah /admin/ harus tertulis "Versi 5".
+
+=====================================================================
+TEMA & ANIMASI (di /admin/ > "Tema & animasi")
+=====================================================================
+- Pilih tema siap pakai (Navy & Taupe, Maroon & Emas, Hijau Sage, Ungu Lavender,
+  Biru Langit, Navy Malam, Hitam Emas) atau atur 7 warna sendiri.
+- Animasi: tingkat (Penuh / Ringan / Mati), efek "Buka Undangan" (geser / pudar / zoom),
+  dan nyala-matikan kelopak melayang, kilau foto, bintang, daun bergoyang, efek muncul.
+- "Pratinjau kartu" untuk melihat dulu sebelum disimpan; "Simpan tema" untuk menerapkan
+  ke semua kartu; "Kembalikan tema awal" untuk kembali ke bawaan.

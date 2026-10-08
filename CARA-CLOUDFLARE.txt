@@ -1,0 +1,36 @@
+PINDAH KE CLOUDFLARE PAGES (sekali saja)
+=======================================
+
+0. Netlify: hentikan build otomatis dulu (supaya Push tidak memakai kredit Netlify)
+   Netlify > project > Project configuration > Build & deploy > Continuous deployment
+   > Build settings > Configure > Build status: Stopped builds > Save
+
+1. Push file terbaru dari GitHub Desktop (Commit to main > Push origin).
+
+2. Daftar / login di https://dash.cloudflare.com
+
+3. Buat database:
+   Storage & Databases > D1 SQL Database > Create
+   Nama: undangan-db > Create
+
+4. Buat situs:
+   Workers & Pages > Create application > tab Pages > Import an existing Git repository
+   > sambungkan GitHub > pilih repo sumpah-apoteker > Begin setup
+   - Project name     : sumpah-apoteker-gunturs1farm (atau nama lain)
+   - Production branch: main
+   - Framework preset : None
+   - Build command    : exit 0
+   - Build output dir : (kosongkan, atau / kalau wajib diisi)
+   > Save and Deploy
+
+5. Sambungkan database & kata sandi:
+   Project > Settings > Bindings > Add > D1 database bindings
+     Variable name: DB    D1 database: undangan-db  > Save
+   Project > Settings > Variables and Secrets > Add
+     Type: Secret   Name: ADMIN_PASSWORD   Value: (kata sandi admin Anda) > Save
+
+6. Deploy ulang supaya pengaturan aktif:
+   Project > Deployments > (deployment teratas) > ... > Retry deployment
+
+7. Buka https://<nama-project>.pages.dev/admin/  -> harus tertulis "Versi 6 · Cloudflare"
+   Login dengan kata sandi tadi.
