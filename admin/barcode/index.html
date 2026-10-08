@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Barcode Undangan</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Figtree:wght@400;500;600&display=swap">
+<script>(function(){var P="212222 222122 222221 121223 121322 131222 122213 122312 132212 221213 221312 231212 112232 122132 122231 113222 123122 123221 223211 221132 221231 213212 223112 312131 311222 321122 321221 312212 322112 322211 212123 212321 232121 111323 131123 131321 112313 132113 132311 211313 231113 231311 112133 112331 132131 113123 113321 133121 313121 211331 231131 213113 213311 213131 311123 311321 331121 312113 312311 332111 314111 221411 431111 111224 111422 121124 121421 141122 141221 112214 112412 122114 122411 142112 142211 241211 221114 413111 241112 134111 111242 121142 121241 114212 124112 124211 411212 421112 421211 212141 214121 412121 111143 111341 131141 114113 114311 411113 411311 113141 114131 311141 411131 211412 211214 211232 2331112".split(" ");
+var NS="http://www.w3.org/2000/svg";
+function C128(el,text,o){o=o||{};if(typeof el==="string")el=document.querySelector(el);if(!el)return;
+var s=String(text==null?"":text).replace(/[^\x20-\x7E]/g,"?");if(!s)s="-";
+var codes=[104],sum=104;for(var i=0;i<s.length;i++){var v=s.charCodeAt(i)-32;codes.push(v);sum+=v*(i+1)}codes.push(sum%103);codes.push(106);
+var w=o.width||2,h=o.height||70,m=o.margin==null?10:o.margin,fs=o.fontSize||16,show=o.displayValue!==false,bg=o.background||"#ffffff",fg=o.lineColor||"#000000";
+var mods=0;codes.forEach(function(c){P[c].split("").forEach(function(d){mods+=+d})});
+var W=mods*w+m*2,H=h+m*2+(show?fs+4:0);while(el.firstChild)el.removeChild(el.firstChild);
+el.setAttribute("viewBox","0 0 "+W+" "+H);el.setAttribute("width",W);el.setAttribute("height",H);el.setAttribute("role","img");el.setAttribute("aria-label","Barcode "+s);
+var r=document.createElementNS(NS,"rect");r.setAttribute("width",W);r.setAttribute("height",H);r.setAttribute("fill",bg);el.appendChild(r);
+var x=m;codes.forEach(function(c){var p=P[c],bar=true;for(var k=0;k<p.length;k++){var n=+p[k]*w;if(bar){var b=document.createElementNS(NS,"rect");b.setAttribute("x",x);b.setAttribute("y",m);b.setAttribute("width",n);b.setAttribute("height",h);b.setAttribute("fill",fg);el.appendChild(b)}x+=n;bar=!bar}});
+if(show){var t=document.createElementNS(NS,"text");t.setAttribute("x",W/2);t.setAttribute("y",m+h+fs+1);t.setAttribute("text-anchor","middle");t.setAttribute("font-family","monospace");t.setAttribute("font-size",fs);t.setAttribute("fill",fg);t.textContent=s;el.appendChild(t)}}
+window.JsBarcode=C128;})();</script>
+<style>
+:root{--bg:#EFEAE4;--card:#FAF7F3;--ink:#14233F;--soft:#59627A;--navy:#1B2F55;--taupe:#8B7B6B;--line:#D8CFC4;--new:#1E7A4C;--display:Fraunces,Georgia,serif;--body:Figtree,system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#0B1426;--card:#122039;--ink:#EDE7DF;--soft:#A6AEC0;--navy:#C3AF99;--taupe:#B9A58F;--line:#26375A;--new:#6FCB9B;color-scheme:dark}}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--body);padding:0 16px 48px}
+header{max-width:1100px;margin:0 auto;padding:28px 0 12px}
+h1{font:600 clamp(1.5rem,4vw,2.2rem)/1.15 var(--display);margin:0 0 4px;color:var(--navy)}
+.sub{color:var(--soft);margin:0}
+.bar{max-width:1100px;margin:12px auto 18px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:5;border-bottom:1px solid var(--line)}
+input[type=search]{flex:1 1 220px;min-width:0;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit}
+.seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;background:var(--card);color:var(--ink);padding:9px 12px;font:500 14px var(--body);cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--navy);color:var(--card)}
+.b{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:9px 12px;font:500 14px var(--body);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.b.pri{background:var(--navy);border-color:var(--navy);color:var(--card)}
+.stat{max-width:1100px;margin:0 auto 14px;color:var(--soft);font-size:14px;display:flex;gap:16px;flex-wrap:wrap}
+.stat b{color:var(--ink)}
+.live{display:inline-flex;align-items:center;gap:6px}.live i{width:8px;height:8px;border-radius:50%;background:var(--new);display:inline-block;animation:p 2s infinite}
+@keyframes p{50%{opacity:.3}}
+.grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.it{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px;position:relative}
+.it.baru{border-color:var(--new);box-shadow:0 0 0 2px color-mix(in srgb,var(--new) 25%,transparent)}
+.nm{font-weight:600;line-height:1.3}
+.tg{font-size:12px;color:var(--soft);display:flex;gap:6px;flex-wrap:wrap}
+.tg span{border:1px solid var(--line);border-radius:999px;padding:1px 8px}
+.tg .tb{border-color:var(--taupe);color:var(--taupe)}
+.tg .nw{border-color:var(--new);color:var(--new);font-weight:600}
+.bc{background:#fff;border-radius:8px;padding:6px;display:flex;justify-content:center}
+.bc svg{width:100%;height:auto}
+.act{display:flex;gap:6px;flex-wrap:wrap}.act .b{padding:6px 10px;font-size:13px}
+.empty{max-width:1100px;margin:30px auto;text-align:center;color:var(--soft)}
+#toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:var(--navy);color:var(--card);padding:10px 16px;border-radius:999px;font-weight:500;box-shadow:0 6px 20px rgba(0,0,0,.2);z-index:9}
+footer{max-width:1100px;margin:28px auto 0;color:var(--soft);font-size:13px;text-align:center}
+footer a{color:inherit}
+@media (max-width:600px){.bar{position:static}}
+@media print{
+  body{background:#fff;color:#000;padding:0}
+  header .sub,.bar,.stat,.act,footer,#toast{display:none!important}
+  header{padding:0 0 6mm}h1{color:#000;font-size:16pt}
+  .grid{grid-template-columns:repeat(2,1fr);gap:5mm}
+  .it{break-inside:avoid;border:1px solid #999;border-radius:3mm;padding:3mm;box-shadow:none!important;background:#fff}
+  .tg span{border-color:#999;color:#333}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Barcode Undangan Sumpah Apoteker</h1>
+  <p class="sub">Semua barcode undangan peserta dan undangan tambahan. Undangan baru yang ditambahkan di admin otomatis muncul di sini, lengkap dengan barcodenya.</p>
+</header>
+<div class="bar">
+  <input type="search" id="q" placeholder="Cari nama atau kode…" aria-label="Cari">
+  <div class="seg" role="group" aria-label="Filter">
+    <button type="button" data-f="semua" aria-pressed="true">Semua</button>
+    <button type="button" data-f="peserta" aria-pressed="false">Peserta</button>
+    <button type="button" data-f="tambahan" aria-pressed="false">Tambahan</button>
+  </div>
+  <button class="b pri" type="button" id="pr">Cetak / Simpan PDF</button>
+  <button class="b" type="button" id="csv">Unduh daftar (CSV)</button>
+  <a class="b" href="../">← Admin</a>
+</div>
+<div class="stat"><span>Total <b id="sT">0</b></span><span>Peserta <b id="sP">0</b></span><span>Tambahan <b id="sX">0</b></span><span class="live" id="lv"><i></i> Sinkron otomatis</span></div>
+<div class="grid" id="g"></div>
+<p class="empty" id="em" hidden>Tidak ada barcode yang cocok.</p>
+<footer>Product by gunturs1farm</footer>
+<div id="toast" hidden></div>
+<script type="application/json" id="base">[["25152001", "apt. Abdurrahman, S.Farm"], ["25152029", "apt. Abil Prahas Pratistha, S.Farm"], ["25152052", "apt. Ach Naufal Firdaus, S.Farm"], ["25152044", "apt. Ahmad Gasya Afiansyah, S.Farm"], ["25152030", "apt. Ahmad Taufiqurohman, S.Farm"], ["25152019", "apt. Ainun Azmi J Launu, S.Farm"], ["25152002", "apt. Alpian Rompon, S.Farm"], ["25152095", "apt. Aminah Kunnu, S.Farm"], ["25152093", "apt. Anggun Nitasari, S.Farm"], ["25152077", "apt. Anisaria, S.Farm"], ["25152055", "apt. Anjas Kila', S.Farm"], ["25152045", "apt. Argya Ryan Darmasaputra, S.Farm"], ["25152099", "apt. Aster Tiodora Boru Siagian, S.Farm"], ["25152084", "apt. Astin, S.Farm"], ["25152056", "apt. Atary Anggita Putri, S.Farm"], ["25152031", "apt. Ayesi Dewi Safitri, S.Farm"], ["25152046", "apt. Ayu Ismawati, S.Farm"], ["25152092", "apt. Cherly Malinda, S.Farm"], ["25152021", "apt. Cindy Puspita Sari, S.Farm"], ["25152022", "apt. Daffa Arya Anastessa, S.Farm"], ["25152085", "apt. Dea Ogena, S.Farm"], ["25152050", "apt. Deta, S.Farm"], ["25152032", "apt. Dhani Eko Wahyu Syah Putra, S.Farm"], ["25152003", "apt. Dia Retno Dwi Faningrum, S.Farm"], ["25152057", "apt. Dicki Efnu Ristanto, S.Farm"], ["25152076", "apt. Dinda Anisyah Chayanti, S.Farm"], ["25152041", "apt. Duwi Ayu Nurjayanti, S.Farm"], ["25152078", "apt. Ekawati Hasan, S.Farm"], ["25152086", "apt. Endang Sulasmi, S.Farm"], ["25152047", "apt. Evita Briliantina Putri, S.Farm"], ["25152004", "apt. Faisal, S.Farm"], ["25152074", "apt. Fesa Arsaqa Kusuma Bhuana, S.Farm"], ["25152005", "apt. Hartina, S.Farm"], ["25152100", "apt. Hendra Septian Puluhulawa, S.Farm"], ["25152071", "apt. Hermansyah, S.Farm"], ["25152070", "apt. Hikmah Rahmadiah, S.Farm"], ["25152059", "apt. Hinda Suliati, S.Farm"], ["25152034", "apt. Indah Sintia Ningrum, S.Farm"], ["25152006", "apt. Indra Dilapanga, S.Farm"], ["25152072", "apt. Jasna Salim, S.Farm"], ["25152073", "apt. Jihan Silvia Daryanto, S.Farm"], ["25152007", "apt. John Raga Pongtummu, S.Farm"], ["25152096", "apt. Karlina Muhdar, S.Farm"], ["25152042", "apt. Khairulnisa, S.Farm"], ["25152036", "apt. Kholifatuz Zakiyyah, S.Farm"], ["25152037", "apt. Lolita Indriani Putri, S.Farm"], ["25152024", "apt. Lovina Anandabea Tricia, S.Farm"], ["25152025", "apt. Maria Rosana Miranti, S.Farm"], ["25152008", "apt. Meis Karim Napui, S.Farm"], ["25152009", "apt. Meyta Fransiska Borong, S.Farm"], ["25152038", "apt. Moh Muhsin, S.Farm"], ["25152060", "apt. Muhammad Faiz Anwar, S.Farm"], ["25152061", "apt. Mutoharoh, S.Farm"], ["25152079", "apt. Nabila Hi Daud, S.Farm"], ["25152039", "apt. Nadya Paramita Viranda Putri, S.Farm"], ["25152010", "apt. Nafa Saprudin, S.Farm"], ["25152048", "apt. Nanda Yuli Ariska, S.Farm"], ["25152064", "apt. Nggio Pebrian, S.Farm"], ["25152026", "apt. Ni'matul Hasanah, S.Farm"], ["25152101", "apt. Novia Salsabila, S.Farm"], ["25152094", "apt. Nuhri, S.Farm"], ["25152087", "apt. Nurjanah Haerudin, S.Farm"], ["25152011", "apt. Pegi Sinta, S.Farm"], ["25152066", "apt. Raudatul Jannah, S.Farm"], ["25152013", "apt. Regar Sri Utami, S.Farm"], ["25152049", "apt. Roisatul Millah, S.Farm"], ["25152090", "apt. Ronald Maliwang, S.Farm"], ["25152067", "apt. Selvi Nabila Simahate, S.Farm"], ["25152014", "apt. Selvia Rahmi, S.Farm"], ["25152080", "apt. Serty Toding, S.Farm"], ["25152098", "apt. Shafna Navis Prandila, S.Farm"], ["25152015", "apt. Siti Samsiyah, S.Farm"], ["25152016", "apt. Sofia Dini Subianto, S.Farm"], ["25152081", "apt. Sri Astuti Muhtar, S.Farm"], ["25152017", "apt. Sri Dewi, S.Farm"], ["25152075", "apt. Sri Sulastri Sultan, S.Farm"], ["25152069", "apt. St. Halijah, S.Farm"], ["25152088", "apt. Stanly Wasty Maya, S.Farm"], ["25152018", "apt. Tiya Amelia Sulman, S.Farm"], ["25152082", "apt. Two Trisnawati, S.Farm"], ["25152089", "apt. Veronica, S.Farm"], ["25152083", "apt. Vivi Mardiani, S.Farm"], ["25152028", "apt. Wiwin Arifatul Khomsaeni, S.Farm"], ["25152091", "apt. Yuriska Yudistia Ningrum, S.Farm"]]</script>
+<script>
+(function(){
+var BASE=JSON.parse(document.getElementById('base').textContent);
+var ROOT=location.pathname.replace(/admin\/barcode\/?(index\.html)?$/,'');
+var LIST=[],SEEN=null,BARU={},F='semua',Q='',SIG='';
+function $(i){return document.getElementById(i)}
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function gj(u){return fetch(ROOT+u,{cache:'no-store'}).then(function(r){var ct=r.headers.get('content-type')||'';return r.ok&&ct.indexOf('json')>=0?r.json():null}).catch(function(){return null})}
+function key(n){return String(n).toLowerCase().replace(/^apt\.\s*/,'')}
+function toast(t){var e=$('toast');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(function(){e.hidden=true},3500)}
+function svg(code){var s=document.createElementNS('http://www.w3.org/2000/svg','svg');JsBarcode(s,code,{width:2,height:60,margin:8,fontSize:14});return s}
+function png(it){var s=svg(it.kode),x=new XMLSerializer().serializeToString(s),W=+s.getAttribute('width'),H=+s.getAttribute('height'),k=3;
+  var img=new Image();img.onload=function(){var c=document.createElement('canvas');c.width=W*k;c.height=H*k;var g=c.getContext('2d');g.fillStyle='#fff';g.fillRect(0,0,c.width,c.height);g.drawImage(img,0,0,c.width,c.height);
+  c.toBlob(function(b){var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='barcode-'+it.kode.replace(/[^A-Za-z0-9-]+/g,'_')+'.png';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500)},'image/png')};
+  img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(x)}
+function render(){var g=$('g');g.innerHTML='';var q=Q.toLowerCase(),n=0;
+  LIST.forEach(function(it){if(F!=='semua'&&it.jenis!==F)return;if(q&&(it.nama+' '+it.kode).toLowerCase().indexOf(q)<0)return;n++;
+    var c=el('article','it'+(BARU[it.id]?' baru':''));c.appendChild(el('div','nm',it.nama));
+    var tg=el('div','tg');tg.appendChild(el('span',it.jenis==='tambahan'?'tb':'',it.jenis==='tambahan'?'Undangan tambahan':'Peserta'));tg.appendChild(el('span',null,it.kode));if(BARU[it.id])tg.appendChild(el('span','nw','BARU'));c.appendChild(tg);
+    var b=el('div','bc');b.appendChild(svg(it.kode));c.appendChild(b);
+    var a=el('div','act');var d=el('button','b','Unduh PNG');d.type='button';d.onclick=function(){png(it)};a.appendChild(d);
+    var o=el('a','b','Buka undangan');o.href=it.link;o.target='_blank';o.rel='noopener';a.appendChild(o);c.appendChild(a);g.appendChild(c)});
+  $('em').hidden=n>0;
+  var p=LIST.filter(function(x){return x.jenis==='peserta'}).length;$('sT').textContent=LIST.length;$('sP').textContent=p;$('sX').textContent=LIST.length-p}
+function sinkron(){Promise.all([gj('api/tambahan'),gj('api/hapus'),gj('aset/hapus.json'),gj('api/pengaturan')]).then(function(a){
+  var ok=Array.isArray(a[0]);$('lv').hidden=!ok;
+  var hp=[].concat(Array.isArray(a[1])?a[1]:[],Array.isArray(a[2])?a[2]:[]).map(String),NM=(a[3]&&a[3].nama)||{},ex=ok?a[0]:[];
+  var sig=JSON.stringify([ex,hp,NM]);if(sig===SIG)return;SIG=sig;
+  var L=[];BASE.forEach(function(b){if(hp.indexOf(b[0])>=0)return;L.push({id:b[0],nama:NM[b[0]]||b[1],kode:b[0],jenis:'peserta',link:ROOT+'undangan/'+b[0]+'.html'})});
+  ex.forEach(function(x){if(!x||!x.id||hp.indexOf(String(x.id))>=0)return;L.push({id:String(x.id),nama:String(x.nama),kode:String(x.kode||x.nama),jenis:'tambahan',link:ROOT+'k/'+encodeURIComponent(x.id)})});
+  L.sort(function(x,y){return key(x.nama).localeCompare(key(y.nama))});
+  if(SEEN){var nb=L.filter(function(x){return !SEEN[x.id]});nb.forEach(function(x){BARU[x.id]=1});if(nb.length)toast(nb.length+' undangan baru: '+nb.map(function(x){return x.nama}).join(', '))}
+  SEEN={};L.forEach(function(x){SEEN[x.id]=1});LIST=L;render()})}
+$('q').oninput=function(){Q=this.value.trim();render()};
+document.querySelectorAll('.seg button').forEach(function(b){b.onclick=function(){F=b.dataset.f;document.querySelectorAll('.seg button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});render()}});
+$('pr').onclick=function(){window.print()};
+$('csv').onclick=function(){var r=[['Nama','Kode barcode','Jenis','Link']].concat(LIST.map(function(x){return [x.nama,x.kode,x.jenis,location.origin+x.link]}));
+  var t='﻿'+r.map(function(a){return a.map(function(v){return '"'+String(v).replace(/"/g,'""')+'"'}).join(',')}).join('\r\n');
+  var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/csv'}));a.download='barcode-undangan.csv';document.body.appendChild(a);a.click();setTimeout(function(){a.remove()},500)};
+sinkron();setInterval(function(){if(!document.hidden)sinkron()},8000);document.addEventListener('visibilitychange',function(){if(!document.hidden)sinkron()});
+})();
+</script>
+</body>
+</html>
