@@ -1,0 +1,100 @@
+UNDANGAN SUMPAH APOTEKER - FOLDER SIAP NETLIFY (VERSI 5)
+Product by gunturs1farm
+
+STRUKTUR FOLDER
+sumpah-apoteker/
+  index.html          Halaman daftar semua undangan (cari nama/NIM, Salin link, Kirim WA)
+  undangan/           84 UNDANGAN JADI   -> link: /undangan/NIM.html  (contoh /undangan/25152001.html)
+  tambahan/           UNDANGAN TAMBAHAN  -> kartu otomatis untuk nama baru, barcode kode TB-
+  admin/              SUPER ADMIN        -> /admin/  untuk membuat undangan tambahan
+  aset/               musik.mp3, foto-grup.jpg, hapus.json (daftar undangan yang dihapus)
+  tidak-berlaku.html  halaman yang muncul jika link undangan sudah dihapus
+  netlify/            program server (hanya aktif jika disambungkan lewat GitHub)
+  _redirects          link lama /u/NIM.html otomatis dialihkan ke /undangan/NIM.html
+  netlify.toml, package.json   pengaturan Netlify (jangan dihapus)
+
+Jangan ganti nama atau pindahkan folder di atas.
+
+=====================================================================
+MODE SINKRON OTOMATIS (disarankan)
+=====================================================================
+Agar undangan tambahan TERSIMPAN DI SERVER dan otomatis muncul (sinkron)
+di halaman daftar semua tamu & admin di HP/laptop mana pun:
+1. Login dulu di https://app.netlify.com (WAJIB login, supaya Netlify ikut
+   memasang program server di folder netlify/).
+2. Buka situs sumpah-apoteker-gunturs1farm > Deploys > seret folder sumpah-apoteker.
+3. Site configuration > Environment variables > Add a variable:
+   Key: ADMIN_PASSWORD   Value: kata sandi pilihan Anda > Save.
+4. Deploys > Trigger deploy > Deploy project.
+5. Buka /admin/ -> tertulis "Mode online tersimpan" -> masuk dengan kata sandi.
+   Daftar di halaman utama dan admin memperbarui sendiri setiap 20 detik.
+   Undangan yang dibuat di versi claude.ai bisa dipindahkan: tempel linknya
+   (dari tombol "Salin semua link baru") ke kotak nama di /admin/.
+
+Jika /admin/ tertulis "Mode tanpa server", berarti program server belum
+terpasang: pastikan Anda login saat menyeret folder, atau pakai Cara B.
+
+=====================================================================
+CARA A - NETLIFY DROP TANPA SERVER (tanpa kata sandi, tidak sinkron)
+=====================================================================
+1. Buka https://app.netlify.com > pilih situs sumpah-apoteker-gunturs1farm
+   > tab Deploys > seret folder "sumpah-apoteker" ke kotak "Drag and drop".
+   (Situs baru: https://app.netlify.com/drop)
+2. Buka https://sumpah-apoteker-gunturs1farm.netlify.app/admin/
+   Mode "tanpa server" otomatis aktif.
+3. Tulis nama mahasiswa (satu per baris) > "Tambah & buat barcode".
+   Link undangan tambahan langsung jadi, contoh:
+   https://sumpah-apoteker-gunturs1farm.netlify.app/tambahan/?n=XXXX
+   Bisa langsung dibagikan, TIDAK perlu upload ulang.
+Catatan: daftar undangan tambahan hanya tersimpan di browser yang dipakai
+(simpan dengan tombol "Salin semua link tambahan"). Nama tambahan tidak
+muncul di halaman daftar umum.
+
+=====================================================================
+CARA B - SAMBUNG GITHUB (undangan tambahan tersimpan di server)
+=====================================================================
+1. Buat repository private di https://github.com, upload SEMUA isi folder ini
+   (termasuk folder netlify, admin, tambahan, undangan, aset, file _redirects).
+2. Netlify > situs Anda > Site configuration > Build & deploy > Link repository > pilih repo.
+   Build command: kosong. Publish directory: .
+3. Site configuration > Environment variables > Add: ADMIN_PASSWORD = kata sandi pilihan Anda.
+4. Deploys > Trigger deploy.
+5. Buka /admin/ > masuk dengan kata sandi > tambah nama.
+   Link: https://sumpah-apoteker-gunturs1farm.netlify.app/k/<kode>
+   Nama tambahan otomatis muncul di halaman daftar dan daftar peserta semua kartu.
+
+Barcode undangan tambahan selalu diawali "TB-" (= undangan tambahan),
+dan kartunya memiliki label "Undangan Tambahan".
+
+=====================================================================
+MENGHAPUS UNDANGAN (DAFTAR BUKU TAMU)
+=====================================================================
+Buka /admin/ > bagian "Daftar buku tamu" > cari nama > Hapus (klik 2x).
+Nama hilang dari daftar dan link undangannya menampilkan "Undangan tidak berlaku".
+Bisa dipulihkan dari bagian "Undangan yang dihapus" > Pulihkan.
+
+- Cara B (GitHub/server): langsung berlaku untuk semua tamu.
+- Cara A (Netlify Drop): klik "Unduh hapus.json", simpan ke folder aset/
+  (timpa file lama), lalu seret ulang folder sumpah-apoteker ke Netlify.
+
+=====================================================================
+UCAPAN, KONFIRMASI KEHADIRAN & LIVE STREAMING (butuh mode server)
+=====================================================================
+- Setiap kartu kini punya bagian "Live Streaming" dan "Ucapan & Konfirmasi Kehadiran".
+  Tamu menulis nama, memilih Hadir / Tidak hadir / Masih ragu (+ jumlah orang), dan ucapan.
+  Semua ucapan tampil di semua kartu dan diperbarui otomatis.
+- Link YouTube diatur di /admin/ > "Live streaming YouTube" > tempel link > Simpan link.
+  Bisa diganti kapan saja; semua kartu langsung memakai link baru (tanpa upload ulang).
+- Rekap kehadiran & ucapan ada di /admin/ > "Ucapan & konfirmasi kehadiran":
+  jumlah hadir, perkiraan orang, hapus ucapan yang tidak pantas, dan Unduh CSV (bisa dibuka di Excel).
+
+=====================================================================
+FITUR EDIT PER ITEM (VERSI 5, di /admin/)
+=====================================================================
+- Isi undangan: tanggal & jam, waktu, lokasi, link Maps, kata pembuka, rundown,
+  tata tertib, keterangan barcode, penutup, penandatangan, nomor WA -> Simpan.
+  Berlaku langsung di semua kartu. "Kembalikan ke isi awal" untuk membatalkan.
+- Daftar buku tamu: tombol Edit pada tiap nama (nama di kartu & daftar ikut berubah).
+- Undangan tambahan: tombol Edit nama (barcode TB- ikut diperbarui).
+- Ucapan & konfirmasi: tombol Edit pada tiap ucapan (nama, kehadiran, jumlah, ucapan) dan Hapus.
+- Cek versi: di bagian bawah /admin/ harus tertulis "Versi 5".

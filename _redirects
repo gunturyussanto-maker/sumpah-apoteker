@@ -1,0 +1,3 @@
+# link lama /u/NIM.html tetap berfungsi
+/u/tamu.html   /tambahan/   301
+/u/*           /undangan/:splat   301

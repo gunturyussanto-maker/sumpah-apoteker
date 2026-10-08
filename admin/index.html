@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Super Admin Undangan</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Figtree:wght@400;500;600&display=swap">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.6/JsBarcode.code128.min.js"></script>
+<script id="c128">(function(){var P="212222 222122 222221 121223 121322 131222 122213 122312 132212 221213 221312 231212 112232 122132 122231 113222 123122 123221 223211 221132 221231 213212 223112 312131 311222 321122 321221 312212 322112 322211 212123 212321 232121 111323 131123 131321 112313 132113 132311 211313 231113 231311 112133 112331 132131 113123 113321 133121 313121 211331 231131 213113 213311 213131 311123 311321 331121 312113 312311 332111 314111 221411 431111 111224 111422 121124 121421 141122 141221 112214 112412 122114 122411 142112 142211 241211 221114 413111 241112 134111 111242 121142 121241 114212 124112 124211 411212 421112 421211 212141 214121 412121 111143 111341 131141 114113 114311 411113 411311 113141 114131 311141 411131 211412 211214 211232 2331112".split(" ");
+var NS="http://www.w3.org/2000/svg";
+function C128(el,text,o){o=o||{};if(typeof el==="string")el=document.querySelector(el);if(!el)return;
+var s=String(text==null?"":text).replace(/[^\x20-\x7E]/g,"?");if(!s)s="-";
+var codes=[104],sum=104;for(var i=0;i<s.length;i++){var v=s.charCodeAt(i)-32;codes.push(v);sum+=v*(i+1)}codes.push(sum%103);codes.push(106);
+var w=o.width||2,h=o.height||70,m=o.margin==null?10:o.margin,fs=o.fontSize||16,show=o.displayValue!==false,bg=o.background||"#ffffff",fg=o.lineColor||"#000000";
+var mods=0;codes.forEach(function(c){P[c].split("").forEach(function(d){mods+=+d})});
+var W=mods*w+m*2,H=h+m*2+(show?fs+4:0);while(el.firstChild)el.removeChild(el.firstChild);
+el.setAttribute("viewBox","0 0 "+W+" "+H);el.setAttribute("width",W);el.setAttribute("height",H);el.setAttribute("role","img");el.setAttribute("aria-label","Barcode "+s);
+var r=document.createElementNS(NS,"rect");r.setAttribute("width",W);r.setAttribute("height",H);r.setAttribute("fill",bg);el.appendChild(r);
+var x=m;codes.forEach(function(c){var p=P[c],bar=true;for(var k=0;k<p.length;k++){var n=+p[k]*w;if(bar){var b=document.createElementNS(NS,"rect");b.setAttribute("x",x);b.setAttribute("y",m);b.setAttribute("width",n);b.setAttribute("height",h);b.setAttribute("fill",fg);el.appendChild(b)}x+=n;bar=!bar}});
+if(show){var t=document.createElementNS(NS,"text");t.setAttribute("x",W/2);t.setAttribute("y",m+h+fs+1);t.setAttribute("text-anchor","middle");t.setAttribute("font-family","monospace");t.setAttribute("font-size",fs);t.setAttribute("fill",fg);t.textContent=s;el.appendChild(t)}}
+window.JsBarcode=C128;})();</script>
+<style>
+/* Layout: satu kolom panel kartu di atas latar krem; navy untuk aksi, taupe untuk garis & aksen */
+:root{--bg:#EFEAE4;--card:#FAF7F3;--ink:#14233F;--soft:#59627A;--navy:#1B2F55;--taupe:#8B7B6B;--line:#D8CFC4;--wa:#1E7A4C;--bad:#A23B2C;
+--display:Fraunces,Georgia,serif;--body:Figtree,system-ui,sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#0B1426;--card:#122039;--ink:#EDE7DF;--soft:#A6AEC0;--navy:#C3AF99;--taupe:#B9A58F;--line:#26375A;--wa:#6FCB9B;--bad:#F08A7A;color-scheme:dark}}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.55 var(--body);padding:28px 16px 48px}
+main{max-width:720px;margin:0 auto;display:grid;gap:18px}
+header{text-align:center}
+.rx{font:400 2.4rem var(--display);color:var(--navy);line-height:1}
+h1{font:400 1.8rem var(--display);color:var(--navy);margin:6px 0 2px;text-wrap:balance}
+h2{font:600 1.05rem var(--body);margin:0 0 4px;color:var(--ink)}
+.eyebrow{font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--taupe);margin:0}
+p{margin:0;color:var(--soft)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;gap:12px}
+.panel.key{border-color:var(--taupe)}
+label{font-size:.85rem;color:var(--soft);display:grid;gap:6px}
+input,textarea{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit}
+textarea{min-height:120px;resize:vertical}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.b{font:500 .86rem var(--body);padding:9px 16px;border-radius:999px;border:1px solid var(--navy);background:transparent;color:var(--navy);cursor:pointer;text-decoration:none;white-space:nowrap}
+.b.pri{background:var(--navy);color:var(--card)}
+.b.wa{border-color:var(--wa);color:var(--wa)}
+.b.del{border-color:var(--bad);color:var(--bad)}.b.del.sure{background:var(--bad);color:var(--card)}
+.b.ok{background:var(--navy);color:var(--card)}
+.b:disabled{opacity:.55;cursor:default}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--taupe);outline-offset:2px}
+.msg{font-size:.86rem;min-height:1.3em}.msg.err{color:var(--bad)}.msg.good{color:var(--wa)}
+.stats{display:flex;gap:10px;flex-wrap:wrap}
+.stat{flex:1 1 140px;border:1px solid var(--line);border-radius:14px;padding:10px 14px;background:var(--bg)}
+.stat b{display:block;font:600 1.5rem var(--display);color:var(--navy);font-variant-numeric:tabular-nums}
+.stat span{font-size:.8rem;color:var(--soft)}
+ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+li{border:1px solid var(--line);border-radius:14px;padding:12px;background:var(--bg);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}
+li .nm{font-weight:600;min-width:0}
+li .lk{grid-column:1/-1;font-size:.8rem;color:var(--navy);word-break:break-all}
+li .bc{background:#fff;border-radius:10px;padding:6px;border:1px solid var(--line);display:flex;justify-content:center}
+li .bc svg{display:block;max-width:100%;height:auto}
+li .act{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px}
+.empty{text-align:center;padding:18px;border:1px dashed var(--line);border-radius:14px}
+.note{border:1px dashed var(--taupe);border-radius:14px;padding:12px 14px;background:var(--bg)}.pend{font-size:.82rem;color:var(--bad)}
+#gb li,#gdl li{grid-template-columns:minmax(0,1fr) auto}#gb small{color:var(--soft);font-variant-numeric:tabular-nums;margin-left:8px}
+#gd summary{cursor:pointer;color:var(--soft);font-size:.9rem}
+.ed{grid-column:1/-1;display:grid;gap:8px;border-top:1px dashed var(--line);padding-top:10px;margin-top:4px}.ed select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);font:inherit}
+#kf label{display:grid;gap:6px}
+.by{text-align:center;font-size:.78rem;letter-spacing:.06em;margin-top:8px}.by b{color:var(--navy)}
+@media (max-width:520px){li{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <div class="rx">&#8478;</div>
+  <p class="eyebrow">Super Admin</p>
+  <h1>Undangan Sumpah Apoteker</h1>
+  <p>Tambah undangan baru. Kartu dan barcode dibuat otomatis, linknya langsung bisa dibagikan.</p>
+</header>
+
+<section class="panel" id="modeinfo" hidden><p id="modetext"></p></section>
+<section class="panel key" id="login" hidden>
+  <h2>Masuk sebagai super admin</h2>
+  <p>Gunakan kata sandi yang Anda atur di Netlify (ADMIN_PASSWORD).</p>
+  <form id="lf" class="row" novalidate>
+    <input id="pw" type="password" autocomplete="current-password" placeholder="Kata sandi admin" aria-label="Kata sandi admin" style="flex:1 1 220px">
+    <button class="b pri" id="lb" type="submit">Masuk</button>
+  </form>
+  <p class="msg" id="lm" role="status"></p>
+</section>
+
+<div id="app" hidden>
+  <section class="panel">
+    <div class="stats">
+      <div class="stat"><b id="nb">84</b><span>Undangan awal</span></div>
+      <div class="stat"><b id="nx">0</b><span>Undangan tambahan</span></div>
+      <div class="stat"><b id="nt">84</b><span>Total undangan</span></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Tambah undangan</h2>
+    <p>Satu nama mahasiswa per baris. Kartu bertuliskan "Undangan khusus keluarga dan kerabat dari" nama tersebut, dan barcode dibuat otomatis dari nama.</p>
+    <form id="af" novalidate style="display:grid;gap:10px">
+      <label for="names">Nama mahasiswa (wali dari) &mdash; boleh juga tempel link undangan tambahan dari versi claude.ai</label>
+      <textarea id="names" placeholder="apt. Nama Lengkap, S.Farm&#10;apt. Nama Lain, S.Farm"></textarea>
+      <div class="row"><button class="b pri" id="ab" type="submit">Tambah &amp; buat barcode</button><button class="b" id="ca" type="button">Salin semua link tambahan</button><button class="b" id="lo" type="button">Keluar</button></div>
+    </form>
+    <p class="msg" id="am" role="status"></p>
+  </section>
+
+  <section class="panel">
+    <h2>Undangan tambahan</h2>
+    <ul id="list"></ul>
+  </section>
+
+  <section class="panel">
+    <h2>Daftar buku tamu</h2>
+    <p>Semua undangan, baik undangan jadi maupun tambahan. Tombol <b>Hapus</b> membuat nama hilang dari daftar dan link undangannya tidak berlaku lagi. Bisa dipulihkan kapan saja.</p>
+    <input id="gq" placeholder="Cari nama atau NIM" aria-label="Cari di daftar buku tamu">
+    <p class="msg" id="gm" role="status"></p>
+    <div class="note" id="dropnote" hidden>
+      <p><b>Mode tanpa server:</b> penghapusan baru berlaku untuk tamu setelah file <b>hapus.json</b> diunggah. Klik <b>Unduh hapus.json</b>, simpan ke folder <b>aset/</b> (timpa file lama), lalu seret ulang folder ke Netlify.</p>
+      <div class="row" style="margin-top:8px"><button class="b pri" id="dl" type="button">Unduh hapus.json</button><span id="pend" class="pend"></span></div>
+    </div>
+    <ul id="gb"></ul>
+    <details id="gd"><summary id="gdt">Undangan yang dihapus (0)</summary><ul id="gdl" style="margin-top:10px"></ul></details>
+  </section>
+
+  <section class="panel srvonly" hidden>
+    <h2>Isi undangan</h2>
+    <p>Ubah tanggal, waktu, lokasi, rundown, tata tertib, dan kata-kata di undangan. Berlaku langsung untuk <b>semua</b> kartu (undangan jadi maupun tambahan), tanpa upload ulang.</p>
+    <form id="kf" novalidate style="display:grid;gap:10px">
+      <div class="row" id="krow"><button class="b pri" type="submit">Simpan isi undangan</button><button class="b del" id="kr" type="button">Kembalikan ke isi awal</button></div>
+    </form>
+    <p class="msg" id="km" role="status"></p>
+  </section>
+
+  <section class="panel srvonly" hidden>
+    <h2>Live streaming YouTube</h2>
+    <p>Link ini tampil di bagian <b>Live Streaming</b> semua kartu undangan. Bisa diganti kapan saja.</p>
+    <form id="yf" novalidate style="display:grid;gap:10px">
+      <label for="yu">Link YouTube<input id="yu" inputmode="url" placeholder="https://www.youtube.com/live/xxxxxxxxxxx" autocomplete="off"></label>
+      <label for="yc">Catatan (opsional)<input id="yc" maxlength="200" placeholder="Siaran dimulai pukul 07.00 WIB" autocomplete="off"></label>
+      <div class="row"><button class="b pri" id="ys" type="submit">Simpan link</button><a class="b" id="yo" href="#" target="_blank" rel="noopener" hidden>Buka link</a><button class="b del" id="yx" type="button">Kosongkan</button></div>
+    </form>
+    <p class="msg" id="ym" role="status"></p>
+  </section>
+
+  <section class="panel srvonly" hidden>
+    <h2>Ucapan &amp; konfirmasi kehadiran</h2>
+    <div class="stats">
+      <div class="stat"><b id="rh">0</b><span>Hadir</span></div>
+      <div class="stat"><b id="ro">0</b><span>Perkiraan orang hadir</span></div>
+      <div class="stat"><b id="rt">0</b><span>Tidak hadir</span></div>
+      <div class="stat"><b id="rr">0</b><span>Masih ragu</span></div>
+    </div>
+    <div class="row"><button class="b" id="ucsv" type="button">Unduh CSV</button><button class="b" id="urf" type="button">Muat ulang</button></div>
+    <p class="msg" id="um" role="status"></p>
+    <ul id="ul2"></ul>
+  </section>
+</div>
+<p class="by">Versi 5 &middot; Product by <b>gunturs1farm</b></p>
+</main>
+
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var ROOT=location.origin+location.pathname.replace(/admin\/?(index\.html)?$/,'');
+var API=ROOT+'api/tambahan',KEY='',LIST=[],BASE_COUNT=84,BASE_NAMES=[],MODE='',HK='undanganTambahanLokal';
+var EV='Sumpah Apoteker, Selasa, 27 Oktober 2026 pukul 07.00 WIB di Ballroom Hotel Atria lt. 2';
+function enc(n){return btoa(unescape(encodeURIComponent(n))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}
+function KD(n){var k=String(n).replace(/^\s*apt\.?\s*/i,'').replace(/,\s*S\.?\s*Farm\.?\s*$/i,'').normalize('NFKD').replace(/[^\x20-\x7E]/g,'').replace(/\s+/g,' ').trim().toUpperCase();return 'TB-'+(k||'TAMU')}
+function link(x){return MODE==='server'?ROOT+'k/'+encodeURIComponent(x.id):ROOT+'tambahan/?n='+enc(x.nama)}
+function wa(x){var t='Kepada Yth. Bapak/Ibu/Saudara\nKeluarga dan kerabat dari '+x.nama+'\n\nDengan hormat, kami mengundang Bapak/Ibu/Saudara untuk hadir pada acara '+EV+'.\n\nBuka undangan:\n'+link(x);return 'https://wa.me/?text='+encodeURIComponent(t)}
+function msg(id,t,cls){var e=$(id);e.textContent=t;e.className='msg'+(cls?' '+cls:'')}
+function el(t,c,x){var e=document.createElement(t);if(c)e.className=c;if(x!=null)e.textContent=x;return e}
+function copy(t,b,lab){function done(){b.textContent='Tersalin';b.classList.add('ok');setTimeout(function(){b.textContent=lab;b.classList.remove('ok')},1600)}
+  function fb(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(e){}a.remove();done()}
+  try{navigator.clipboard.writeText(t).then(done,fb)}catch(e){fb()}}
+function api(body){return fetch(API,{method:'POST',headers:{'content-type':'application/json','x-admin-key':KEY},body:JSON.stringify(body)}).then(function(r){return r.json().catch(function(){return {}}).then(function(d){if(!r.ok)throw new Error(d.error||('Gagal ('+r.status+')'));return d})})}
+function loadLocal(){try{var v=JSON.parse(localStorage.getItem(HK)||'[]');LIST=Array.isArray(v)?v.filter(function(x){return x&&x.nama}):[]}catch(e){LIST=[]}}
+function saveLocal(){try{localStorage.setItem(HK,JSON.stringify(LIST))}catch(e){}}
+function stats(){if(typeof gb==='function'&&$('gb'))setTimeout(gb,0);$('nb').textContent=BASE_COUNT;$('nx').textContent=LIST.length;$('nt').textContent=BASE_COUNT+LIST.length}
+function render(){var ul=$('list');ul.innerHTML='';stats();
+  if(!LIST.length){var e=el('li','empty','Belum ada undangan tambahan. Tambahkan nama di atas.');e.style.display='block';ul.appendChild(e);return}
+  LIST.slice().reverse().forEach(function(x){var li=el('li');li.appendChild(el('div','nm',x.nama));
+    var bc=el('div','bc');var sv=document.createElementNS('http://www.w3.org/2000/svg','svg');bc.appendChild(sv);li.appendChild(bc);
+    var kd=x.kode||KD(x.nama);try{if(window.JsBarcode)JsBarcode(sv,kd,{format:'CODE128',width:1.4,height:46,fontSize:12,margin:4,background:'#ffffff'});else bc.textContent=kd}catch(err){bc.textContent=kd}
+    var a=el('a','lk',link(x));a.href=link(x);a.target='_blank';a.rel='noopener';li.appendChild(a);
+    var ac=el('div','act');
+    var o=el('a','b','Buka kartu');o.href=link(x);o.target='_blank';o.rel='noopener';ac.appendChild(o);
+    var cp=el('button','b','Salin link');cp.type='button';cp.onclick=function(){copy(link(x),cp,'Salin link')};ac.appendChild(cp);
+    var w=el('a','b wa','Kirim WA');w.href=wa(x);w.target='_blank';w.rel='noopener';ac.appendChild(w);
+    if(MODE==='server')ac.appendChild(edBtn(function(){editor(li,[{k:'nama',label:'Nama mahasiswa',val:x.nama,max:120}],function(v){return api({action:'edit',id:x.id,nama:v.nama}).then(function(r){LIST=r.list||LIST;render();msg('am','Nama diperbarui. Barcode ikut diperbarui.','good')})})}));
+    var d=el('button','b del','Hapus');d.type='button';d.onclick=function(){if(!d.classList.contains('sure')){d.classList.add('sure');d.textContent='Yakin hapus?';setTimeout(function(){d.classList.remove('sure');d.textContent='Hapus'},4000);return}
+      if(MODE!=='server'){LIST=LIST.filter(function(y){return y!==x});saveLocal();render();msg('am','Dihapus dari daftar. Link yang sudah dibagikan tetap bisa dibuka.','good');return}
+      d.disabled=true;api({action:'delete',id:x.id}).then(function(r){LIST=r.list||[];render();msg('am','Undangan '+x.nama+' dihapus.','good')}).catch(function(e){d.disabled=false;msg('am',e.message,'err')})};
+    ac.appendChild(d);li.appendChild(ac);ul.appendChild(li)})}
+var NMO={};
+function editor(li,fields,save){if(li.querySelector('.ed'))return;var f=el('form','ed');f.noValidate=true;var ins={};
+  fields.forEach(function(d){var lb=el('label',null,d.label),i;if(d.type==='select'){i=el('select');d.opts.forEach(function(o){var op=el('option',null,o[1]);op.value=o[0];i.appendChild(op)})}else if(d.type==='area'){i=el('textarea');i.rows=d.rows||3}else{i=el('input');if(d.type)i.type=d.type}i.value=d.val==null?'':d.val;if(d.max)i.maxLength=d.max;lb.appendChild(i);f.appendChild(lb);ins[d.k]=i});
+  var row=el('div','row'),sv=el('button','b pri','Simpan'),bt=el('button','b','Batal'),m=el('p','msg');sv.type='submit';bt.type='button';row.appendChild(sv);row.appendChild(bt);f.appendChild(row);f.appendChild(m);
+  bt.onclick=function(){f.remove()};f.onsubmit=function(ev){ev.preventDefault();var v={};Object.keys(ins).forEach(function(k){v[k]=ins[k].value});sv.disabled=true;m.textContent='Menyimpan…';m.className='msg';
+    Promise.resolve(save(v)).then(function(){f.remove()}).catch(function(e){sv.disabled=false;m.textContent=e.message;m.className='msg err'})};
+  li.appendChild(f);var first=f.querySelector('input,textarea,select');if(first)first.focus()}
+function edBtn(fn){var b=el('button','b','Edit');b.type='button';b.onclick=fn;return b}
+var BASE=[],HAPUS=[],FILEH=[],HK2='hapusLokal';
+function gid(x){return MODE==='server'?x.id:'n.'+enc(x.nama)}
+function loadH(){if(MODE==='server'){return fetch(ROOT+'api/hapus',{cache:'no-store'}).then(function(r){return r.ok?r.json():[]}).then(function(d){HAPUS=Array.isArray(d)?d:[];gb()}).catch(function(){gb()})}
+  return fetch(ROOT+'aset/hapus.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():[]}).catch(function(){return []}).then(function(d){FILEH=Array.isArray(d)?d.map(String):[];
+    var loc=null;try{loc=JSON.parse(localStorage.getItem(HK2)||'null')}catch(e){}HAPUS=Array.isArray(loc)?loc:FILEH.slice();gb()})}
+function saveH(){try{localStorage.setItem(HK2,JSON.stringify(HAPUS))}catch(e){}}
+function pending(){if(MODE==='server')return;var a=HAPUS.slice().sort().join('|'),b=FILEH.slice().sort().join('|');$('pend').textContent=a===b?'':'Ada perubahan yang belum diunggah ke Netlify.'}
+function rows(){var r=BASE.map(function(b){return {id:b[0],nama:NMO[b[0]]||b[1],asli:b[1],nim:b[0]}});LIST.forEach(function(x){r.push({id:gid(x),sid:x.id,nama:x.nama,nim:'',baru:true})});return r.sort(function(a,b){return a.nama.toLowerCase().localeCompare(b.nama.toLowerCase())})}
+function setH(id,on,lab){var next=on?(HAPUS.indexOf(id)<0?HAPUS.concat([id]):HAPUS):HAPUS.filter(function(x){return x!==id});
+  if(MODE!=='server'){HAPUS=next;saveH();gb();msg('gm',(on?'Dihapus: ':'Dipulihkan: ')+lab+'. Jangan lupa unduh hapus.json dan unggah ulang.','good');return}
+  msg('gm','Menyimpan…');fetch(ROOT+'api/hapus',{method:'POST',headers:{'content-type':'application/json','x-admin-key':KEY},body:JSON.stringify({action:on?'hapus':'pulihkan',id:id})}).then(function(r){return r.json().then(function(d){if(!r.ok)throw new Error(d.error||'Gagal');return d})})
+  .then(function(d){HAPUS=d.list||next;gb();msg('gm',(on?'Dihapus: ':'Dipulihkan: ')+lab+'. Linknya '+(on?'tidak berlaku lagi.':'aktif kembali.'),'good')}).catch(function(e){msg('gm',e.message,'err')})}
+function gb(){var ul=$('gb'),dl=$('gdl');if(!ul)return;ul.innerHTML='';dl.innerHTML='';var k=$('gq').value.toLowerCase(),n=0,all=rows();
+  all.forEach(function(x){var off=HAPUS.indexOf(x.id)>=0,li=el('li');var nm=el('div','nm',x.nama);if(x.nim)nm.appendChild(el('small',null,x.nim));if(x.baru)nm.appendChild(el('small',null,'TAMBAHAN'));li.appendChild(nm);
+    var ac=el('div','act');
+    if(off){var r=el('button','b','Pulihkan');r.type='button';r.onclick=function(){setH(x.id,false,x.nama)};ac.appendChild(r);li.appendChild(ac);dl.appendChild(li);return}
+    if(MODE==='server')ac.appendChild(edBtn(function(){editor(li,[{k:'nama',label:x.baru?'Nama mahasiswa':'Nama di undangan (kosongkan untuk kembali ke nama asli: '+x.asli+')',val:x.baru?x.nama:(NMO[x.id]||''),max:120}],function(v){
+      if(x.baru)return api({action:'edit',id:x.sid,nama:v.nama}).then(function(r){LIST=r.list||LIST;render();msg('gm','Nama diperbarui.','good')});
+      return api2('/api/pengaturan',{action:'nama',id:x.id,nama:v.nama}).then(function(p){NMO=p.nama||{};gb();msg('gm','Nama di undangan '+x.id+' diperbarui. Kartu dan daftar langsung ikut berubah.','good')})})}));
+    var d=el('button','b del','Hapus');d.type='button';d.onclick=function(){if(!d.classList.contains('sure')){d.classList.add('sure');d.textContent='Yakin hapus?';setTimeout(function(){d.classList.remove('sure');d.textContent='Hapus'},4000);return}setH(x.id,true,x.nama)};
+    ac.appendChild(d);li.appendChild(ac);if(!k||(x.nama+' '+x.nim).toLowerCase().indexOf(k)>=0){ul.appendChild(li);n++}});
+  $('gdt').textContent='Undangan yang dihapus ('+dl.children.length+')';$('dropnote').hidden=MODE==='server';pending()}
+$('gq').oninput=gb;
+$('dl').onclick=function(){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(HAPUS,null,1)],{type:'application/json'}));a.download='hapus.json';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500)};
+var POLL=null;function startPoll(){if(POLL||MODE!=='server')return;POLL=setInterval(function(){if(document.hidden||!KEY)return;api({action:'list'}).then(function(r){var n=JSON.stringify(r.list||[]);if(n!==JSON.stringify(LIST)){LIST=r.list||[];render()}}).catch(function(){});loadH()},20000)}
+var UC=[];
+function uc(){if(MODE!=='server')return;api2('/api/ucapan',{action:'daftar'}).then(function(d){UC=d.list||[];var r=d.ringkasan||{};$('rh').textContent=r.hadir||0;$('ro').textContent=r.orang||0;$('rt').textContent=r.tidak||0;$('rr').textContent=r.ragu||0;ucl()}).catch(function(e){msg('um',e.message,'err')})}
+function api2(u,body){return fetch(ROOT+u.replace(/^\//,''),{method:'POST',headers:{'content-type':'application/json','x-admin-key':KEY},body:JSON.stringify(body)}).then(function(r){return r.json().catch(function(){return {}}).then(function(d){if(!r.ok)throw new Error(d.error||('Gagal ('+r.status+')'));return d})})}
+var LBL={hadir:'Hadir',tidak:'Tidak hadir',ragu:'Masih ragu'};
+function ucl(){var ul=$('ul2');ul.innerHTML='';if(!UC.length){var e=el('li','empty','Belum ada ucapan.');e.style.display='block';ul.appendChild(e);return}
+  UC.forEach(function(x){var li=el('li'),nm=el('div','nm',x.nama);nm.appendChild(el('small',null,(LBL[x.hadir]||'')+(x.hadir==='hadir'?' · '+(x.jumlah||1)+' orang':'')+' · '+new Date(x.waktu).toLocaleString('id-ID')));li.appendChild(nm);
+    if(x.pesan){var p=el('p',null,x.pesan);p.style.cssText='grid-column:1/-1;margin:0;color:var(--ink);white-space:pre-line;overflow-wrap:anywhere';li.appendChild(p)}
+    var ac=el('div','act');ac.appendChild(edBtn(function(){editor(li,[{k:'nama',label:'Nama',val:x.nama,max:60},{k:'hadir',label:'Kehadiran',type:'select',val:x.hadir,opts:[['hadir','Hadir'],['tidak','Tidak hadir'],['ragu','Masih ragu']]},{k:'jumlah',label:'Jumlah yang hadir',type:'select',val:String(x.jumlah||1),opts:[['1','1 orang'],['2','2 orang']]},{k:'pesan',label:'Ucapan',type:'area',rows:4,val:x.pesan,max:500}],function(v){
+      return api2('/api/ucapan',{action:'edit',id:x.id,nama:v.nama,hadir:v.hadir,jumlah:v.jumlah,pesan:v.pesan}).then(function(r){UC=r.list||UC;uc();msg('um','Ucapan dari '+v.nama+' diperbarui.','good')})})}));
+    var d=el('button','b del','Hapus');d.type='button';d.onclick=function(){if(!d.classList.contains('sure')){d.classList.add('sure');d.textContent='Yakin hapus?';setTimeout(function(){d.classList.remove('sure');d.textContent='Hapus'},4000);return}
+      d.disabled=true;api2('/api/ucapan',{action:'hapus',id:x.id}).then(function(r){UC=r.list||[];uc();msg('um','Ucapan dari '+x.nama+' dihapus.','good')}).catch(function(e){d.disabled=false;msg('um',e.message,'err')})};
+    ac.appendChild(d);li.appendChild(ac);ul.appendChild(li)})}
+function yt(){fetch(ROOT+'api/pengaturan',{cache:'no-store'}).then(function(r){return r.json()}).then(function(p){NMO=p.nama||{};ACA=p.acara||{};isiForm();gb();$('yu').value=p.youtube||'';$('yc').value=p.catatan||'';$('yo').hidden=!p.youtube;$('yo').href=p.youtube||'#'}).catch(function(){})}
+function saveYt(u,c){msg('ym','Menyimpan…');api2('/api/pengaturan',{youtube:u,catatan:c}).then(function(p){$('yu').value=p.youtube;$('yc').value=p.catatan;$('yo').hidden=!p.youtube;$('yo').href=p.youtube||'#';msg('ym',p.youtube?'Link tersimpan. Semua kartu undangan langsung memakai link ini.':'Link dikosongkan.','good')}).catch(function(e){msg('ym',e.message,'err')})}
+var ACA={},DEFV={},AF=[['event','Nama acara','text',80],['unit','Program studi','text',120],['inst','Institusi / penyelenggara','text',120],['date','Tanggal & jam mulai (untuk hitung mundur)','datetime-local',16],['time','Waktu (teks)','text',60],['loc','Lokasi','text',160],['maps','Link Google Maps','url',300],['open1','Kata pembuka 1','area',1200],['open2','Kata pembuka 2','area',800],['rundown','Rundown (satu acara per baris)','area',3000],['tata','Tata tertib (satu poin per baris)','area',3000],['barnote','Keterangan barcode','area',300],['close','Kalimat penutup','area',800],['sign','Penandatangan (Hormat kami)','area',200],['wa','Nomor WhatsApp konfirmasi (awali 62, opsional)','text',20]];
+function buildForm(){var box=$('kf');if(!box||box.dataset.ok)return;box.dataset.ok=1;AF.forEach(function(a){var lb=el('label',null,a[1]),i;if(a[2]==='area'){i=el('textarea');i.rows=a[0]==='rundown'||a[0]==='tata'?8:3}else{i=el('input');i.type=a[2]}i.id='k_'+a[0];i.maxLength=a[3];lb.appendChild(i);box.insertBefore(lb,$('krow'))})}
+function isiForm(){buildForm();AF.forEach(function(a){var i=$('k_'+a[0]);if(i)i.value=ACA[a[0]]||DEFV[a[0]]||''})}
+fetch(ROOT+'undangan/25152001.html',{cache:'no-store'}).then(function(r){return r.text()}).then(function(t){var m=t.match(/<script type="application\/json" id="baked">([\s\S]*?)<\/script>/);if(m){DEFV=JSON.parse(m[1]).v||{};isiForm()}}).catch(function(){});
+$('kf').onsubmit=function(ev){ev.preventDefault();var a={};AF.forEach(function(x){var v=$('k_'+x[0]).value;if(v.trim()&&v!==(DEFV[x[0]]||''))a[x[0]]=v});msg('km','Menyimpan…');
+  api2('/api/pengaturan',{action:'acara',acara:a}).then(function(p){ACA=p.acara||{};isiForm();msg('km','Tersimpan. Semua kartu undangan langsung memakai isi baru.','good')}).catch(function(e){msg('km',e.message,'err')})};
+$('kr').onclick=function(){if(!this.classList.contains('sure')){var b=this;b.classList.add('sure');b.textContent='Yakin kembalikan?';setTimeout(function(){b.classList.remove('sure');b.textContent='Kembalikan ke isi awal'},4000);return}
+  api2('/api/pengaturan',{action:'acara',acara:{}}).then(function(p){ACA={};isiForm();msg('km','Isi undangan dikembalikan ke versi awal.','good')}).catch(function(e){msg('km',e.message,'err')})};
+$('yf').onsubmit=function(ev){ev.preventDefault();saveYt($('yu').value.trim(),$('yc').value.trim())};
+$('yx').onclick=function(){$('yu').value='';saveYt('',$('yc').value.trim())};
+$('urf').onclick=uc;
+$('ucsv').onclick=function(){var esc=function(v){v=String(v==null?'':v);return /[",\n;]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v};
+  var rows=[['Waktu','Nama','Kehadiran','Jumlah','Ucapan','Dari undangan']].concat(UC.map(function(x){return [new Date(x.waktu).toLocaleString('id-ID'),x.nama,LBL[x.hadir]||x.hadir,x.hadir==='hadir'?(x.jumlah||1):0,x.pesan,x.untuk||'']}));
+  var a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['﻿'+rows.map(function(r){return r.map(esc).join(',')}).join('\n')],{type:'text/csv'}));a.download='ucapan-kehadiran.csv';document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500)};
+function enter(){$('login').hidden=true;$('app').hidden=false;
+  if(MODE!=='server'){loadLocal();render();loadH();return}
+  document.querySelectorAll('.srvonly').forEach(function(e){e.hidden=false});yt();uc();setInterval(function(){if(!document.hidden&&KEY)uc()},30000);api({action:'list'}).then(function(r){LIST=r.list||[];render();loadH();startPoll()}).catch(function(e){msg('am',e.message,'err')})}
+fetch(ROOT+'index.html',{cache:'no-store'}).then(function(r){return r.text()}).then(function(t){var m=t.match(/<script type="application\/json" id="data">([\s\S]*?)<\/script>/);if(m){var d=JSON.parse(m[1]);BASE_COUNT=d.base.length;BASE_NAMES=d.base.map(function(b){return b[1]});BASE=d.base;stats();gb()}}).catch(function(){});
+function setMode(m){MODE=m;$('modeinfo').hidden=false;
+  if(m==='server'){$('modetext').innerHTML='Mode <b>online tersimpan</b>: undangan tambahan disimpan di server Netlify dan otomatis muncul di halaman daftar. Masuk dengan kata sandi ADMIN_PASSWORD.';$('login').hidden=false;
+    try{var s=sessionStorage.getItem('adminKey');if(s){KEY=s;api({action:'check'}).then(enter).catch(function(){KEY='';try{sessionStorage.removeItem('adminKey')}catch(e){}})}}catch(e){}}
+  else{$('modetext').innerHTML='Mode <b>tanpa server</b> (Netlify Drop): nama tersimpan di dalam link undangan, jadi link langsung bisa dibagikan tanpa upload ulang. Daftar di bawah hanya tersimpan di browser ini, dan nama baru tidak muncul di halaman daftar umum.';$('lo').hidden=true;enter()}}
+fetch(API,{cache:'no-store'}).then(function(r){var ct=r.headers.get('content-type')||'';if(r.ok&&ct.indexOf('json')>=0)return r.json().then(function(d){setMode(Array.isArray(d)?'server':'lokal')});setMode('lokal')}).catch(function(){setMode('lokal')});
+$('lf').onsubmit=function(ev){ev.preventDefault();var v=$('pw').value;if(!v){msg('lm','Isi kata sandi dulu.','err');return}
+  $('lb').disabled=true;msg('lm','Memeriksa…');KEY=v;
+  api({action:'check'}).then(function(){try{sessionStorage.setItem('adminKey',v)}catch(e){}msg('lm','');enter()}).catch(function(e){KEY='';msg('lm',e.message,'err')}).then(function(){$('lb').disabled=false})};
+$('af').onsubmit=function(ev){ev.preventDefault();var names=$('names').value.split('\n').map(function(s){var m=s.match(/[#?&]n[.=]([A-Za-z0-9_-]{3,400})/);if(m){try{var t=m[1].replace(/-/g,'+').replace(/_/g,'/');while(t.length%4)t+='=';s=decodeURIComponent(escape(atob(t)))}catch(e){}}return s}).map(function(s){return s.replace(/[\u0000-\u001F<>]/g,'').replace(/\s+/g,' ').trim().slice(0,120)}).filter(function(s){return s.length>=2});
+  if(!names.length){msg('am','Isi minimal satu nama.','err');return}
+  if(MODE!=='server'){var low={};BASE_NAMES.concat(LIST.map(function(x){return x.nama})).forEach(function(n){low[n.toLowerCase()]=1});var add=0,skip=[];
+    names.forEach(function(n){if(low[n.toLowerCase()]){skip.push(n);return}low[n.toLowerCase()]=1;LIST.push({id:'l'+Date.now().toString(36)+add,nama:n,kode:KD(n)});add++});
+    saveLocal();render();$('names').value='';msg('am',add+' undangan dibuat.'+(skip.length?' Dilewati karena sudah ada: '+skip.join(', ')+'.':''),add?'good':'err');return}
+  $('ab').disabled=true;msg('am','Membuat '+names.length+' undangan…');
+  api({action:'add',names:names,existing:BASE_NAMES}).then(function(r){LIST=r.list||LIST;render();$('names').value='';
+    var t=(r.ditambah||[]).length+' undangan ditambahkan.';if(r.dilewati&&r.dilewati.length)t+=' Dilewati karena sudah ada: '+r.dilewati.join(', ')+'.';msg('am',t,'good')})
+  .catch(function(e){msg('am',e.message,'err')}).then(function(){$('ab').disabled=false})};
+$('ca').onclick=function(){copy(LIST.map(function(x){return x.nama+': '+link(x)}).join('\n')||'Belum ada undangan tambahan.',$('ca'),'Salin semua link tambahan')};
+$('lo').onclick=function(){try{sessionStorage.removeItem('adminKey')}catch(e){}KEY='';LIST=[];$('app').hidden=true;$('login').hidden=false;$('pw').value=''};
+})();
+</script>
+</body>
+</html>
