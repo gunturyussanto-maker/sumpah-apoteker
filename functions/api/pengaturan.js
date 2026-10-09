@@ -1,7 +1,7 @@
 import { getKV, setKV, json, tolakAdmin, aman } from "../../lib/cf.js";
 
 const KEY = "pengaturan";
-// Nilai awal (dipindahkan dari situs Netlify) dipakai sampai admin menyimpan pengaturan baru.
+// Nilai awal (dipindahkan dari situs lama) dipakai sampai admin menyimpan pengaturan baru.
 const AWAL = { youtube: "https://www.youtube.com/@itsksoepraoen/streams", catatan: "07.00 WIB" };
 const ACARA = { event: 80, unit: 120, inst: 120, date: 16, time: 60, loc: 160, maps: 300, open1: 1200, open2: 800, rundown: 3000, tata: 3000, barnote: 300, close: 800, sign: 200, wa: 20 };
 
