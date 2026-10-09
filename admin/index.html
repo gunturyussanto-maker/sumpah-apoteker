@@ -93,7 +93,7 @@ h3.sub{font:600 .95rem var(--body);margin:6px 0 0}
 <section class="panel" id="modeinfo" hidden><p id="modetext"></p></section>
 <section class="panel key" id="login" hidden>
   <h2>Masuk sebagai super admin</h2>
-  <p>Gunakan kata sandi yang Anda atur di Netlify (ADMIN_PASSWORD).</p>
+  <p>Gunakan kata sandi yang Anda atur di Cloudflare (ADMIN_PASSWORD).</p>
   <form id="lf" class="row" novalidate>
     <input id="pw" type="password" autocomplete="current-password" placeholder="Kata sandi admin" aria-label="Kata sandi admin" style="flex:1 1 220px">
     <button class="b pri" id="lb" type="submit">Masuk</button>
@@ -132,7 +132,7 @@ h3.sub{font:600 .95rem var(--body);margin:6px 0 0}
     <input id="gq" placeholder="Cari nama atau NIM" aria-label="Cari di daftar buku tamu">
     <p class="msg" id="gm" role="status"></p>
     <div class="note" id="dropnote" hidden>
-      <p><b>Mode tanpa server:</b> penghapusan baru berlaku untuk tamu setelah file <b>hapus.json</b> diunggah. Klik <b>Unduh hapus.json</b>, simpan ke folder <b>aset/</b> (timpa file lama), lalu seret ulang folder ke Netlify.</p>
+      <p><b>Mode tanpa server:</b> penghapusan baru berlaku untuk tamu setelah file <b>hapus.json</b> diunggah. Klik <b>Unduh hapus.json</b>, simpan ke folder <b>aset/</b> (timpa file lama), lalu commit dan push ke GitHub.</p>
       <div class="row" style="margin-top:8px"><button class="b pri" id="dl" type="button">Unduh hapus.json</button><span id="pend" class="pend"></span></div>
     </div>
     <ul id="gb"></ul>
@@ -245,7 +245,7 @@ function loadH(){if(MODE==='server'){return fetch(ROOT+'api/hapus',{cache:'no-st
   return fetch(ROOT+'aset/hapus.json',{cache:'no-store'}).then(function(r){return r.ok?r.json():[]}).catch(function(){return []}).then(function(d){FILEH=Array.isArray(d)?d.map(String):[];
     var loc=null;try{loc=JSON.parse(localStorage.getItem(HK2)||'null')}catch(e){}HAPUS=Array.isArray(loc)?loc:FILEH.slice();gb()})}
 function saveH(){try{localStorage.setItem(HK2,JSON.stringify(HAPUS))}catch(e){}}
-function pending(){if(MODE==='server')return;var a=HAPUS.slice().sort().join('|'),b=FILEH.slice().sort().join('|');$('pend').textContent=a===b?'':'Ada perubahan yang belum diunggah ke Netlify.'}
+function pending(){if(MODE==='server')return;var a=HAPUS.slice().sort().join('|'),b=FILEH.slice().sort().join('|');$('pend').textContent=a===b?'':'Ada perubahan yang belum diunggah.'}
 function rows(){var r=BASE.map(function(b){return {id:b[0],nama:NMO[b[0]]||b[1],asli:b[1],nim:b[0]}});LIST.forEach(function(x){r.push({id:gid(x),sid:x.id,nama:x.nama,nim:'',baru:true})});return r.sort(function(a,b){return a.nama.toLowerCase().localeCompare(b.nama.toLowerCase())})}
 function setH(id,on,lab){var next=on?(HAPUS.indexOf(id)<0?HAPUS.concat([id]):HAPUS):HAPUS.filter(function(x){return x!==id});
   if(MODE!=='server'){HAPUS=next;saveH();gb();msg('gm',(on?'Dihapus: ':'Dipulihkan: ')+lab+'. Jangan lupa unduh hapus.json dan unggah ulang.','good');return}

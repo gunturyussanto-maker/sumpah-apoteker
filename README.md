@@ -12,7 +12,6 @@ Product by gunturs1farm
 - `tambahan/` : template undangan tambahan (barcode TB-)
 - `admin/` : panel admin (tambah, hapus, edit, tema, live YouTube, ucapan)
 - `functions/` + `lib/` : server untuk **Cloudflare Pages** (database D1)
-- `netlify/` : server versi lama untuk Netlify (tidak dipakai di Cloudflare)
 - `aset/` : musik dan foto grup
 
 ## Hosting di Cloudflare Pages
