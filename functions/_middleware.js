@@ -1,9 +1,9 @@
-// Animasi undangan tetap jalan walau Windows/HP tamu mematikan "efek animasi".
-// Banyak laptop Windows & HP hemat daya mengaktifkan "prefers-reduced-motion",
-// sehingga semua animasi undangan otomatis mati. Jika admin memilih tingkat animasi
-// "Penuh" (Admin > Tema & animasi), file ini menonaktifkan pengecekan tersebut.
-// Jika admin memilih "Ringan", pengaturan perangkat tamu tetap dihormati.
-// Letakkan di: <folder website>/functions/_middleware.js
+// Middleware untuk semua halaman HTML website undangan.
+// 1) Daftar "Peserta Sumpah Apoteker" di setiap undangan hanya berisi 84 peserta.
+//    Nama undangan tambahan (TB-) tidak lagi ditambahkan ke daftar itu.
+// 2) Animasi undangan tetap jalan walau Windows/HP tamu mematikan "efek animasi"
+//    (prefers-reduced-motion), selama Admin > Tema & animasi = "Penuh".
+//    Jika admin memilih "Ringan", pengaturan perangkat tamu tetap dihormati.
 
 function getDb(env) {
   if (env.DB && typeof env.DB.prepare === "function") return env.DB;
@@ -25,15 +25,24 @@ async function animLevel(env) {
   return level;
 }
 
+// Skrip yang menyisipkan nama undangan tambahan ke daftar peserta (#pl).
+const TAMBAHAN_KE_PESERTA = /<script>\(function\(\)\{if\(!\/\^https\?:\$\/\.test\(location\.protocol\)\)return;fetch\('\/api\/tambahan'[\s\S]*?<\/script>/g;
+
 export async function onRequest(ctx) {
   const res = await ctx.next();
   const ct = res.headers.get("content-type") || "";
   if (res.status !== 200 || !ct.includes("text/html")) return res;
-  if ((await animLevel(ctx.env)) !== "penuh") return res;
-  const html = (await res.text()).replace(
-    /\(\s*prefers-reduced-motion\s*:\s*reduce\s*\)/g,
-    "(prefers-reduced-motion: reduce) and (max-width: 0px)"
-  );
+  const path = new URL(ctx.request.url).pathname;
+  if (path.startsWith("/admin")) return res;
+
+  let html = await res.text();
+  html = html.replace(TAMBAHAN_KE_PESERTA, "");
+  if ((await animLevel(ctx.env)) === "penuh") {
+    html = html.replace(
+      /\(\s*prefers-reduced-motion\s*:\s*reduce\s*\)/g,
+      "(prefers-reduced-motion: reduce) and (max-width: 0px)"
+    );
+  }
   const h = new Headers(res.headers);
   h.delete("content-length");
   h.delete("etag");
